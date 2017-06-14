@@ -1,0 +1,40 @@
+<div *ngIf="selectedList != null" id="tasksContainer">
+	<div id="taskTitleContainer">
+		<span id="taskTitle">{{selectedList.name}}</span>
+	</div>
+	<div id="newTaskContainer">
+		<div class="plus-container">
+			<a href="javascript:void(0)" (click)="addNewTask(newTask)">
+				<img src="./app/toDo/images/plus.png" class="list-item-image"/>
+			</a>
+		</div>
+		<div class="input-container">
+			<input class="list-item-name" placeholder="Add New Task" #newTask>
+		</div>
+	</div>
+	<div id="tasks">
+		<ul>
+			<div *ngFor="let taskItem of taskItems">
+				<li *ngIf="taskItem.completed == false" class="taskItem">
+					<img src="./app/images/X.png" class="delete-task" (click)="onRemoveTaskItemClick(taskItem)"/>
+					<input type="checkbox" class="task-item-checkbox" (click)="toggleCheck(taskItem)" align="middle"/>
+					<span class="task-item-name">{{taskItem.name}}</span>
+				</li>
+			</div>
+		</ul>
+	</div>
+	<div id="showCompletedTasksContainer">
+		<span id="showCompletedTasks">Completed Tasks</span>
+	</div>
+	<div id="completedTasks">
+		<ul>
+			<div *ngFor="let taskItem of taskItems">
+				<li *ngIf="taskItem.completed == true" class="completed taskItem">
+					<img src="./app/images/X.png" class="delete-task" (click)="onRemoveTaskItemClick(taskItem)"/>
+					<input type="checkbox" checked class="task-item-checkbox" (click)="toggleCheck(taskItem)"/>
+					<del class="task-item-name">{{taskItem.name}}</del>
+				</li>
+			</div>
+		</ul>
+	</div>
+</div>
